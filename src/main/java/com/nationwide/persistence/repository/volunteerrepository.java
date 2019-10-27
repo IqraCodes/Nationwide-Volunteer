@@ -1,8 +1,10 @@
 package com.nationwide.persistence.repository;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.nationwide.persistence.domain.volunteer;
 
-public interface volunteerrepository extends Repository<volunteer, Long> {
+public interface volunteerrepository extends JpaRepository<volunteer, Long> {
+
+	
 
 }

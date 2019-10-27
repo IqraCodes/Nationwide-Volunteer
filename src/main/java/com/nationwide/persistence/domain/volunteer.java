@@ -3,13 +3,13 @@ package com.nationwide.persistence.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
 import org.springframework.data.annotation.Id;
 
 @Entity
 public class volunteer {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String orgname;
 	private String aboutorg;
