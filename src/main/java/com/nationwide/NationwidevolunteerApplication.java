@@ -1,4 +1,4 @@
-package com.nationwide.demo;
+package com.nationwide;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
