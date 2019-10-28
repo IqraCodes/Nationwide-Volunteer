@@ -1,15 +1,15 @@
-package com.nationwide.persistence.domain;
+package com.nationwide.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+
 
 @Entity
-public class volunteer {
+public class Volunteer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Long id;
 	private String orgname;
 	private String aboutorg;
@@ -17,7 +17,6 @@ public class volunteer {
 	private String areaofwork;
 	private String skillset;
 	private String weblink;
-	
 	public Long getId() {
 		return id;
 	}
@@ -58,6 +57,21 @@ public class volunteer {
 		return weblink;
 	}
 	public void setWeblink(String weblink) {
+		this.weblink = weblink;
+	}
+	public Volunteer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Volunteer(Long id, String orgname, String aboutorg, String location, String areaofwork, String skillset,
+			String weblink) {
+		super();
+		this.id = id;
+		this.orgname = orgname;
+		this.aboutorg = aboutorg;
+		this.location = location;
+		this.areaofwork = areaofwork;
+		this.skillset = skillset;
 		this.weblink = weblink;
 	}
 	

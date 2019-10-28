@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nationwide.persistence.domain.volunteer;
-import com.nationwide.persistence.repository.volunteerrepository;
+import com.nationwide.domain.Volunteer;
+import com.nationwide.repository.volunteerrepository;
 
 @Service
 public class volunteerService {
@@ -15,17 +15,17 @@ public class volunteerService {
 	 private volunteerrepository Repository;
      
      
-    public List<volunteer> getAllvolunteer(){
+    public List<Volunteer> getAllvolunteer(){
     	 return Repository.findAll();
  		
  	}
  	
- 	public volunteer savevolunteer (volunteer volunteerToSave) {
+ 	public Volunteer savevolunteer (Volunteer volunteerToSave) {
  		return Repository.save(volunteerToSave);
  	}
  	
  	
- 	public volunteer updatevolunteer (volunteer volunteerToUpdate) {
+ 	public Volunteer updatevolunteer (Volunteer volunteerToUpdate) {
  		return Repository.save(volunteerToUpdate);
  	}
  	
