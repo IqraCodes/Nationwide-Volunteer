@@ -3,6 +3,7 @@ package com.nationwide.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.nationwide.business.volunteerService;
 import com.nationwide.domain.Volunteer;
 
 @RestController
+
 @RequestMapping("/volunteerapp")
 public class volunteercontroller {
     
@@ -23,11 +25,11 @@ public class volunteercontroller {
 	@GetMapping(value="/volunteer")
 	public List<Volunteer> getAllvolunteer(){
 		return volunteerService.getAllvolunteer();
-		
 	}
-	
+	@CrossOrigin
 	@PostMapping(value="/volunteer")
 	public Volunteer savevolunteer (@RequestBody Volunteer volunteerToSave) {
+		System.out.println("hello testjng");
 		return volunteerService.savevolunteer(volunteerToSave);
 	}
 	
