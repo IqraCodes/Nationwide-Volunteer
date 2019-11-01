@@ -14,22 +14,23 @@
   <body>
 
           <div id="container" class="container">
-              <div class="row text-blue">
+              <div class="row">
                   <div class="col-sm-6 offset-sm-3 text-center">
-                      <h1 class="display-4">XXX XX XX XX</h1>
+                      <h1 class="display-10">POST VOLUNTEERING OPPORTUNITIES</h1>
                       <div class="info-form">
-            <form action="" class="form-inlin ol-sm-6 offset-sm-3 text-center" method="POST">
+
+            <form action="" class="col-sm-6 offset-sm-3 text-center" method="POST">
           
-              <div class="form-group col-md-6">
+              <div class="form-group col-md">
                   <label for="orgname"><b>Organisation Name</b></label>
                   <input type="text" class="form-control" id="orgname" name="orgname" placeholder="Example input">
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md">
                   <label for="aboutorg"><b>About Organisation</b></label>
                   <textarea class="form-control" id="aboutorg" name="aboutorg" rows="3"></textarea>
               </div>
       
-              <div class="form-group col-md-6">
+              <div class="form-group col-md">
                   <label for="location"><b>Location</b></label>
                   <select id="location" name="location" class="form-control">
                     <option selected>Choose...</option>
@@ -40,7 +41,7 @@
                   </select>
                 </div>
       
-                <div class="form-group col-md-6">
+                <div class="form-group col-md">
                   <label for="skillset"><b>Skillset Needed</b></label>
                   <select id="skillset" name="skillset" class="form-control">
                     <option selected>Choose...</option>
@@ -58,7 +59,7 @@
                   </select>
                 </div>
       
-                <div class="form-group col-md-6">
+                <div class="form-group col-md">
                   <label for="areaofwork"><b>Area of Work</b></label>
                   <select id="areaofwork" name="areaofwork" class="form-control">
                     <option selected>Choose...</option>
@@ -80,14 +81,12 @@
                  </select>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md">
                   <label for="weblink"><b>Website Link</b></label>
                   <input type="text" class="form-control" id="weblink" name="weblink" placeholder="Enter Organisation Website">
               </div>
       
-                <button type="button" class="btn btn-primary" id="Save" onclick="request()"> Save</button>
-                <button type="button" class="btn btn-primary" id="Update">Edit</button>
-                <button type="button" class="btn btn-primary" id="Delete">Delete</button>
+                <button type="button" class="btn btn-primary col-md-4" id="Save" onclick="postrequest()"> Save</button>
       
             </form>
       </div>
@@ -106,10 +105,3 @@
 </html>
 
 
-<!-- 
-{"orgname": "Oxfam",
-"aboutorg": "KDFKNDX DKCMSK KMDKKS DMKZMFK MDZKM KXMCKZDM MCZXKFMDSK MZXKMFKSD M<ZXMFKZ" ,
-"location": "London",
-"areaofwork": "International Development",
-"skillset":"Data Science",
-"weblink": "www.oxfam.org.uk"} -->
