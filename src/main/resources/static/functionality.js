@@ -10,7 +10,7 @@ function getrequest(){
   
     Http.onreadystatechange = function(ev) {
         if (Http.readyState == 4){
-        	//alert("I ma back");
+    
             data = JSON.parse(Http.responseText);
             var table = document.getElementById("volunteertable");
             while (table.hasChildNodes()){
@@ -23,11 +23,20 @@ function getrequest(){
                 
                 var newrow = document.createElement("tr");
                 var namelist = newrow.appendChild(document.createElement('td'));
+                namelist.setAttribute("contenteditable", "true");
                 var aboutorglist = newrow.appendChild(document.createElement('td'));
+                aboutorglist.setAttribute("contenteditable", "true");
                 var locationlist = newrow.appendChild(document.createElement('td'));
+                locationlist.setAttribute("contenteditable", "true");
                 var skillsetlist = newrow.appendChild(document.createElement('td'));
+                skillsetlist.setAttribute("contenteditable", "true");
                 var areaofworklist = newrow.appendChild(document.createElement('td'));
+                areaofworklist.setAttribute("contenteditable", "true");
                 var weblinklist = newrow.appendChild(document.createElement('td'));
+                weblinklist.setAttribute("contenteditable", "true");
+
+
+
                 var updatedTd = newrow.appendChild(document.createElement('td'));
                 var deleteTd = newrow.appendChild(document.createElement('td'));
                 var updateButton = document.createElement('input');
@@ -42,6 +51,11 @@ function getrequest(){
                     deleterequest(volunteer.id);
                 }
 
+                updateButton.onclick = function (){
+                    updaterequest();
+                }
+
+    
                 namelist.innerHTML = volunteer.orgname;
                 aboutorglist.innerHTML = volunteer.aboutorg;
                 locationlist.innerHTML = volunteer.location;
@@ -65,13 +79,13 @@ function getrequest(){
 // POST
 
 function postrequest(){
-   
+
     const Http = new XMLHttpRequest();
     const url='http://localhost:9002/volunteerapp/volunteer';
     
     Http.open("POST", url,true);
     Http.setRequestHeader("Content-Type", "application/json");
-    
+
     const fd = {
       'orgname': document.getElementById("orgname").value,
       'aboutorg': document.getElementById("aboutorg").value,
@@ -89,29 +103,29 @@ function postrequest(){
     }
 
     // UPDATE 
-    
+
    function updaterequest(){
-   
-        const Http = new XMLHttpRequest();
-        const url='http://localhost:9002/volunteerapp/volunteer';
-        
-        Http.open("PUT", url,true);
-        Http.setRequestHeader("Content-Type", "application/json");
-        
-        const fd = {
-          'orgname': document.getElementById("orgname").value,
-          'aboutorg': document.getElementById("aboutorg").value,
-          'location': document.getElementById("location").value,
-          'skillset': document.getElementById("skillset").value,
-          'areaofwork' : document.getElementById("areaofwork").value,
-          'weblink' : document.getElementById("areaofwork").value
-        };
-      
-        Http.onreadystatechange = function(ev) {
-            console.log("testinf 1234");
-        }	  
+    console.log("hey!")
+    const Http = new XMLHttpRequest();
+    const url='http://localhost:9002/volunteerapp/volunteer';
     
-        Http.send(JSON.stringify(fd));
+    Http.open("PUT", url,true);
+    Http.setRequestHeader("Content-Type", "application/json");
+
+    const fd = {
+        'orgname': document.getElementById("orgname").value,
+        'aboutorg': document.getElementById("aboutorg").value,
+        'location': document.getElementById("location").value,
+        'skillset': document.getElementById("skillset").value,
+        'areaofwork' : document.getElementById("areaofwork").value,
+        'weblink' : document.getElementById("weblink").value
+      };
+    
+      Http.onreadystatechange = function(ev) {
+          console.log("testinf 1234");
+      }	  
+  
+      Http.send(JSON.stringify(fd));
         }
 
         // DELETE
