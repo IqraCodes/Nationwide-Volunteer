@@ -115,7 +115,7 @@ function postrequest(){
     const Http = new XMLHttpRequest();
     const url='http://localhost:9002/volunteerapp/volunteer';
     
-    Http.open("POST", url,true);
+    Http.open("PUT", url,true);
     Http.setRequestHeader("Content-Type", "application/json");
 
     const fd = {
