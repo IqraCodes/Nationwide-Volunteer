@@ -17,11 +17,14 @@ function getrequest(){
             while (table.hasChildNodes()){
                 table.removeChild(table.firstChild);
             }
+            
+            
             data.forEach(function(volunteer){
 
                 console.log(volunteer)
-
+                
                 var newrow = document.createElement("tr");
+                newrow.setAttribute("id", volunteer.id);
                 var namelist = newrow.appendChild(document.createElement('td'));
                 namelist.setAttribute("id", "nametable");
                 namelist.setAttribute("contenteditable", "true");
@@ -41,7 +44,8 @@ function getrequest(){
                 weblinklist.setAttribute("contenteditable", "true");
                 weblinklist.setAttribute("id", "weblinktable");
 
-
+                
+                
 
                 var updatedTd = newrow.appendChild(document.createElement('td'));
                 var deleteTd = newrow.appendChild(document.createElement('td'));
@@ -58,7 +62,9 @@ function getrequest(){
                 }
 
                 updateButton.onclick = function (){
-                    updaterequest();
+                    updaterequest(volunteer.id);
+               
+                    
                 }
 
     
@@ -102,7 +108,7 @@ function postrequest(){
     };
   
     Http.onreadystatechange = function(ev) {
-        console.log("testinf 1234");
+       
     }	  
 
     Http.send(JSON.stringify(fd));
@@ -110,7 +116,13 @@ function postrequest(){
 
     // UPDATE 
 
-   function updaterequest(){
+   function updaterequest(id){
+	   
+	var row = document.getElementById(id).getElementsByTagName('td');
+	console.log(row);
+	
+	console.log(row.namedItem('weblinktable').textContent);
+    
 
     const Http = new XMLHttpRequest();
     const url='http://localhost:9002/volunteerapp/volunteer';
@@ -119,22 +131,26 @@ function postrequest(){
     Http.setRequestHeader("Content-Type", "application/json");
 
     const fd = {
-        'orgname': document.getElementById("nametable").value,
-        'aboutorg': document.getElementById("aboutorgtable").value,
-        'location': document.getElementById("locationtable").value,
-        'skillset': document.getElementById("skillsettable").value,
-        'areaofwork' : document.getElementById("areaofworktable").value,
-        'weblink' : document.getElementById("weblinktable").value
+    	'id': id,
+        'orgname': row.namedItem('nametable').textContent,
+        'aboutorg': row.namedItem('aboutorgtable').textContent,
+        'location': row.namedItem('locationtable').textContent,
+        'skillset': row.namedItem('skillsettable').textContent,
+        'areaofwork' : row.namedItem('areaofworktable').textContent,
+        'weblink' : row.namedItem('weblinktable').textContent,
+
       };
   
     Http.onreadystatechange = function(ev) {
         console.log("testinf 1234");
+
+        
     }	  
 
     Http.send(JSON.stringify(fd));
+    
 
-
-        }
+    }
 
         // DELETE
 

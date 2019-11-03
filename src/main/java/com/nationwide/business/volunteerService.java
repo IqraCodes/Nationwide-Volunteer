@@ -26,7 +26,9 @@ public class volunteerService {
  	
  	
  	public Volunteer updatevolunteer (Volunteer volunteerToUpdate) {
+ 		System.out.println(volunteerToUpdate);
  		return Repository.save(volunteerToUpdate);
+
  	}
  	
  	public String deletevolunteer (Long volunteeridToDelete) {
