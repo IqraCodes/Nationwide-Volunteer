@@ -23,17 +23,23 @@ function getrequest(){
 
                 var newrow = document.createElement("tr");
                 var namelist = newrow.appendChild(document.createElement('td'));
+                namelist.setAttribute("id", "nametable");
                 namelist.setAttribute("contenteditable", "true");
                 var aboutorglist = newrow.appendChild(document.createElement('td'));
                 aboutorglist.setAttribute("contenteditable", "true");
+                aboutorglist.setAttribute("id", "aboutorgtable");
                 var locationlist = newrow.appendChild(document.createElement('td'));
                 locationlist.setAttribute("contenteditable", "true");
+                locationlist.setAttribute("id", "locationtable");
                 var skillsetlist = newrow.appendChild(document.createElement('td'));
                 skillsetlist.setAttribute("contenteditable", "true");
+                skillsetlist.setAttribute("id", "skillsettable");
                 var areaofworklist = newrow.appendChild(document.createElement('td'));
                 areaofworklist.setAttribute("contenteditable", "true");
+                areaofworklist.setAttribute("id", "areaofworktable");
                 var weblinklist = newrow.appendChild(document.createElement('td'));
                 weblinklist.setAttribute("contenteditable", "true");
+                weblinklist.setAttribute("id", "weblinktable");
 
 
 
@@ -105,39 +111,27 @@ function postrequest(){
     // UPDATE 
 
    function updaterequest(){
-    
-    var table = document.getElementById("volunteertable");
+
     const Http = new XMLHttpRequest();
     const url='http://localhost:9002/volunteerapp/volunteer';
     
-    Http.open("PUT", url,true);
+    Http.open("POST", url,true);
     Http.setRequestHeader("Content-Type", "application/json");
-    
 
-  
-    var volunteer = {};
-    getrequest();
-      volunteer.orgname = namelist.value;
-      volunteer.aboutorg = aboutorglist.value;
-      volunteer.location = document.getElementById("locationlist").value;
-      volunteer.skillset =document.getElementById("skillsetlist").value;
-      volunteer.areaofwork = document.getElementById("areaofworklist").value;
-      volunteer.weblink = document.getElementById("weblinklist").value;
+    const fd = {
+        'orgname': document.getElementById("nametable").value,
+        'aboutorg': document.getElementById("aboutorgtable").value,
+        'location': document.getElementById("locationtable").value,
+        'skillset': document.getElementById("skillsettable").value,
+        'areaofwork' : document.getElementById("areaofworktable").value,
+        'weblink' : document.getElementById("weblinktable").value
+      };
   
     Http.onreadystatechange = function(ev) {
         console.log("testinf 1234");
     }	  
-    Http.onload = function () {
-        var users = JSON.parse(Http.responseText);
-        if (Http.readyState == 4 && Http.status == "201") {
-            console.table(users);
-        } else {
-            console.error(users);
-        }
-    }
 
-    Http.send(JSON.stringify(volunteer));
-
+    Http.send(JSON.stringify(fd));
 
 
         }
