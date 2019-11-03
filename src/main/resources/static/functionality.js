@@ -13,6 +13,7 @@ function getrequest(){
     
             data = JSON.parse(Http.responseText);
             var table = document.getElementById("volunteertable");
+
             while (table.hasChildNodes()){
                 table.removeChild(table.firstChild);
             }
@@ -20,7 +21,6 @@ function getrequest(){
 
                 console.log(volunteer)
 
-                
                 var newrow = document.createElement("tr");
                 var namelist = newrow.appendChild(document.createElement('td'));
                 namelist.setAttribute("contenteditable", "true");
@@ -105,27 +105,41 @@ function postrequest(){
     // UPDATE 
 
    function updaterequest(){
-    console.log("hey!")
+    
+    var table = document.getElementById("volunteertable");
     const Http = new XMLHttpRequest();
     const url='http://localhost:9002/volunteerapp/volunteer';
     
     Http.open("PUT", url,true);
     Http.setRequestHeader("Content-Type", "application/json");
-
-    const fd = {
-        'orgname': document.getElementById("orgname").value,
-        'aboutorg': document.getElementById("aboutorg").value,
-        'location': document.getElementById("location").value,
-        'skillset': document.getElementById("skillset").value,
-        'areaofwork' : document.getElementById("areaofwork").value,
-        'weblink' : document.getElementById("weblink").value
-      };
     
-      Http.onreadystatechange = function(ev) {
-          console.log("testinf 1234");
-      }	  
+
   
-      Http.send(JSON.stringify(fd));
+    var volunteer = {};
+    getrequest();
+      volunteer.orgname = namelist.value;
+      volunteer.aboutorg = aboutorglist.value;
+      volunteer.location = document.getElementById("locationlist").value;
+      volunteer.skillset =document.getElementById("skillsetlist").value;
+      volunteer.areaofwork = document.getElementById("areaofworklist").value;
+      volunteer.weblink = document.getElementById("weblinklist").value;
+  
+    Http.onreadystatechange = function(ev) {
+        console.log("testinf 1234");
+    }	  
+    Http.onload = function () {
+        var users = JSON.parse(Http.responseText);
+        if (Http.readyState == 4 && Http.status == "201") {
+            console.table(users);
+        } else {
+            console.error(users);
+        }
+    }
+
+    Http.send(JSON.stringify(volunteer));
+
+
+
         }
 
         // DELETE
